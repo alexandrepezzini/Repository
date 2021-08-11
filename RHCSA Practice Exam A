@@ -1,0 +1,27 @@
+Tasks:
+1 - Install a RHEL 8 or CentOS 8 VM that meets the following requirements: 2gb ram, 20 gb space, an extra 20gb without any partitions, server with GUI.
+2 - Create user student with the following psw "password", and user root with psw "password".
+3 - Configure your system to automatically loop-mount the ISO of the instalattion disk on the directory /repo. Configure your system to remove this loop-mounted ISO as the only repository that is used for installation. Do not register your system with subscription-manager, and remove all reference to external repositories that may already exist.
+4 - Reboot your server. Assume that you don't know the root password, and use the appropriate mode to enter a root shell that doesn't require a password. Set the root password to mypassword.
+5 - Set default values for new users. Set the default password validity to 90 days, and set the first UID that is used for new users to 2000.
+6 - Create users edwin and santos and make them members of the group livingopensource as a secondary group membership. Also, create users serene and alex and make them members of the group operations as secondary group.
+7 - Create shared group directories /groups/livingopensource and /groups/operations, and make sure the groups meet the following requirements:
+ - Members of the group livinopensource have full access to their directory.
+ - Members of the group operations have full access to their directory.
+ - New files that are created in the group directory are group owned by the group of the parent directory.
+ - Others have no access to the group directories.
+ - Members of the group operations have read access to the directory /groups/livinopensource.
+8 - Create a 2GiB volume group, using 8MiB physycal extents. In this volume group, create a 500MiB logical volume with the name mydata, and mount it persistently on the directory /mydata.
+9 - Find all files that are owned by user edwin and copy them to the directory /rootedwinfiles.
+10 - Schedule a task that runs the command touch /etc/motd every day from Monday through Friday at 2am.
+11 - Add a new 10GiB virtual disk to your virtual machine. On this disk, add a VDO volume with a size of 20GiB and mount it persistently.
+12 - Create user bob and set this user's shell so that only this user can change the password.
+13 - Install the vsftpd service and ensure that it is started automatically at reboot.
+
+Solutions proposed:
+1 - VM created as the requirements.
+2 - Created with the GUI, while installing CentOS.
+3 - 
+4 - While starting over, choosed the recovery option, after press e, added the "init=/bin/bash/" at the end of the kernel line. Then I got the shell access, where I could change the root password with the passwd root.
+5 - With the command "vi /etc/login.defs", I changed the values as required.
+6 - adduser (edwin, santos, alex, serene) followed by addgroup (livingopensource and operations). Then usermod -a -G livingopensource (edwin, santos, alex, serene) and usermod -a -G operations (alex, serene).
