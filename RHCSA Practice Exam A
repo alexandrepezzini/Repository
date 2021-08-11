@@ -6,11 +6,11 @@ Tasks:
 5 - Set default values for new users. Set the default password validity to 90 days, and set the first UID that is used for new users to 2000.
 6 - Create users edwin and santos and make them members of the group livingopensource as a secondary group membership. Also, create users serene and alex and make them members of the group operations as secondary group.
 7 - Create shared group directories /groups/livingopensource and /groups/operations, and make sure the groups meet the following requirements:
- - Members of the group livinopensource have full access to their directory.
- - Members of the group operations have full access to their directory.
- - New files that are created in the group directory are group owned by the group of the parent directory.
- - Others have no access to the group directories.
- - Members of the group operations have read access to the directory /groups/livinopensource.
+ A - Members of the group livinopensource have full access to their directory.
+ B - Members of the group operations have full access to their directory.
+ C - New files that are created in the group directory are group owned by the group of the parent directory.
+ D - Others have no access to the group directories.
+ E - Members of the group operations have read access to the directory /groups/livinopensource.
 8 - Create a 2GiB volume group, using 8MiB physycal extents. In this volume group, create a 500MiB logical volume with the name mydata, and mount it persistently on the directory /mydata.
 9 - Find all files that are owned by user edwin and copy them to the directory /rootedwinfiles.
 10 - Schedule a task that runs the command touch /etc/motd every day from Monday through Friday at 2am.
@@ -25,3 +25,11 @@ Solutions proposed:
 4 - While starting over, choosed the recovery option, after press e, added the "init=/bin/bash/" at the end of the kernel line. Then I got the shell access, where I could change the root password with the passwd root.
 5 - With the command "vi /etc/login.defs", I changed the values as required.
 6 - adduser (edwin, santos, alex, serene) followed by addgroup (livingopensource and operations). Then usermod -a -G livingopensource (edwin, santos, alex, serene) and usermod -a -G operations (alex, serene).
+7 - mkdir -p /groups/livingopensource;
+    mkdir -p /groups/operations; 
+    A - chgrp -R livingopensource /groups/livingopensource;
+    A - chmod -R 2775 /groups/livingopensource;
+    B - chgrp -R operations /groups/operations;    
+    B - chmod -R 2775 /groups/operations;
+    D - chmod o-rwx /groups/livingopensource;
+    D - chmod o-rwx /groups/operations;
