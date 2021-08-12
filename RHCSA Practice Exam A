@@ -34,3 +34,4 @@ Solutions proposed:
     D - chmod o-rwx /groups/livingopensource;
     D - chmod o-rwx /groups/operations;
 8 - First I needed to partition the 20GiB extra disk, I did it with the following command "fdisk /dev/sdb1", then pressed the "n" for new partition, "p" for primary, 1 that stands for partition number, 2048 for first sector, size of 2GiB did with "+2G", and at the final used "w" to write and save.
+Regarding the 8M PE, first I created a regular 4M, then tried to change, without success. So I removed and started over, but now passing the parameters to apply this 8M PE size.
